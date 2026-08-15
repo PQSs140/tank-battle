@@ -146,6 +146,7 @@ function startLevel(n) {
   player = { x: p.x, y: p.y, dir: 'up', speed: 2.3, cooldown: 0, invincible: 150, size: TANK };
   state = 'playing';
   paused = false;
+  fireQueued = false;
   sfx.start();
 }
 
@@ -224,6 +225,7 @@ function updatePlayer() {
     fireBullet(player, 'player');
     player.cooldown = 18;
   }
+  fireQueued = false;
   player.cooldown = Math.max(0, player.cooldown - 1);
   player.invincible = Math.max(0, player.invincible - 1);
 }
@@ -589,7 +591,6 @@ window.addEventListener('keyup', (e) => {
 
 /* ======================= 主循环 ======================= */
 function loop(now) {
-  fireQueued = false;
   update();
   render();
   requestAnimationFrame(loop);
