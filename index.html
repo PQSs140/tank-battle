@@ -118,7 +118,7 @@ const sfx = (() => {
 let state = 'menu';        // menu | playing | levelclear | gameover
 let paused = false;
 let level = 1, score = 0, lives = 3;
-let map = [], bullets = [], enemies = [], effects = [];
+let map = STAGE.map(row => row.slice()), bullets = [], enemies = [], effects = [];
 let player = null;
 let baseAlive = true;
 let enemiesLeft = 0;
